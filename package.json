@@ -1,0 +1,23 @@
+{
+  "name": "mywebpack",
+  "version": "1.0.0",
+  "description": "webpack学习",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HWliao/mywebpack.git"
+  },
+  "keywords": [
+    "webpack",
+    "demo"
+  ],
+  "author": "HWliao",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HWliao/mywebpack/issues"
+  },
+  "homepage": "https://github.com/HWliao/mywebpack#readme"
+}
