@@ -49,12 +49,14 @@ module.exports = {
       inject: 'body',
       minify: false
     }),
-//    new webpack.ProvidePlugin({
+    new webpack.ProvidePlugin({
+      // 在所有模块中使用logger
+      logger: path.resolve(__dirname, './src/js/utils/consoleUtil'),
 //      $: 'jquery',
 //      jQuery: 'jquery',
 //      'window.jQuery': 'jquery',
 //      'window.$': 'jquery',
-//    }),
+    }),
     new webpack.NoErrorsPlugin()
   ],
   // 老版本jq,不知道怎么加入webpack模块系统.这里使用全局引用

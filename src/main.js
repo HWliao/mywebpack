@@ -13,21 +13,25 @@
 //  require('./js/common/mCustomScrollbar/jquery.mCustomScrollbar.css');
 //  require('!!script-loader!./js/common/mCustomScrollbar/jquery.mCustomScrollbar.concat.min');
 //}
-// 还是要想办法加入Promise,异步回调太难搞了
 
-
-
-if(!window.jQuery||!window.$){
-  // 这里将jq单独切分出去,因为环境中很有可能已经存在了
-  require.ensure('!!script-loader!./js/vender/jquery/jquery-min',function () {
-
-  },'jq');
+function domain() {
+  var check = require('./js/env/envCheck');
+  if (check()) {
+    require('./style/im/im.css');
+    var mainHtml = require('./html/main.html');
+    $(document.body).append(mainHtml);
+    require('./js/main/main');
+  } else {
+    logger.error('the browser must be > IE8!');
+  }
 }
-
-
-
-require('./style/im/im.css');
-var mainHtml = require('./html/main.html');
-
-document.body.appendChild(mainHtml);
-//require('./js/index');
+// 判断是否引入jquery，以及jquery是否为指定版本
+if (window.jQuery && window.jQuery().jquery === '1.8.2') {
+  domain();
+} else {
+  // 这里将jq单独切分出去, 因为环境中很有可能已经存在了
+  require.ensure('!!script-loader!./js/vender/jquery/jquery-min', function () {
+    require('!!script-loader!./js/vender/jquery/jquery-min');
+    domain();
+  }, 'jq');
+}
