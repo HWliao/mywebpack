@@ -7,7 +7,11 @@ var $ = require('jquery');
 // 载入并执行jq scroll插件
 require('../vender/mCustomScrollbar/jquery.mCustomScrollbar.min.css');
 require('!!script-loader!../vender/mCustomScrollbar/jquery.mCustomScrollbar.concat.min');
+require('../../style/im/im.css');
+var mainHtml = require('../../html/main.html');
+$(document.body).append(mainHtml);
 
+var personImg = require('../../images/im/person.jpg');
 var isLogin = true;
 /* 如果已经登录 */
 if (isLogin) {
@@ -71,7 +75,7 @@ $(".imchat-more-btn").click(function () {
   setTimeout(function () {
     var more = '<li class="im-msg-item im-msg-right">' +
       '<div class="msg-img">' +
-      '<img src="images/im/person.jpg">' +
+      '<img src="' + personImg + '">' +
       '</div>' +
       '<div class="msg-text">' +
       '<span class="text">这是加载的内容</span>' +
@@ -79,7 +83,7 @@ $(".imchat-more-btn").click(function () {
       '</li>' +
       '<li class="im-msg-item im-msg-left">' +
       '<div class="msg-img">' +
-      '<img src="images/im/person.jpg">' +
+      '<img src="' + personImg + '">' +
       '</div>' +
       '<div class="msg-text">' +
       '<span class="text">这是加载的内容</span>' +
@@ -97,7 +101,7 @@ $(".send").click(function () {
   if (text) {
     var li = '<li class="im-msg-item im-msg-right">' +
       '<div class="msg-img">' +
-      '<img src="images/im/person.jpg">' +
+      '<img src="' + personImg + '">' +
       '</div>' +
       '<div class="msg-text">' +
       '<span class="text">' + text + '</span>' +

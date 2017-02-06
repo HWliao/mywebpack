@@ -1,0 +1,24 @@
+/* 重置滚动条样式 */
+.mCSB_inside > .mCSB_container {
+  margin: 0;
+}
+
+.mCSB_scrollTools {
+  width: 5px;
+}
+
+.mCS-dark.mCSB_scrollTools .mCSB_draggerRail {
+  background: none;
+}
+
+.mCS-dark.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+  background: #b1b1b1;
+}
+
+.mCS-dark.mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar {
+  background: #b1b1b1;
+}
+
+.mCS-dark.mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar, .mCS-dark.mCSB_scrollTools .mCSB_dragger:active .mCSB_dragger_bar {
+  background: #b1b1b1;
+}

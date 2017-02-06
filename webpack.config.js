@@ -15,7 +15,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: '[name].js',
-    library: '[name]'
+    library: 'JJSIM'
   },
   module: {
     loaders: [
@@ -47,7 +47,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       inject: 'body',
-      minify: false
+      minify: false,
+      template: '!!html!./src/index.html'
     }),
     new webpack.ProvidePlugin({
       // 在所有模块中使用logger
@@ -56,6 +57,9 @@ module.exports = {
 //      jQuery: 'jquery',
 //      'window.jQuery': 'jquery',
 //      'window.$': 'jquery',
+    }),
+    new webpack.DefinePlugin({
+      PRODUCTION: JSON.stringify(false)
     }),
     new webpack.NoErrorsPlugin()
   ],

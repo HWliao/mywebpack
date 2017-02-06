@@ -82,16 +82,33 @@ render(app, {
   debug: true
 });
 router.get('/', function *() {
-  yield this.render('index', {text: 'hello world!'});
+  yield this.render('index', {text: 'the index', href: '/index.html'});
 });
 
 // binding route
 app.use(router.routes());
 app.use(router.allowedMethods());
 
+// webpack
+const webpackDevMiddleware = require('koa-webpack-dev-middleware');
+const webpack = require('webpack');
+const webpackConf = require('../webpack.config');
+const compiler = webpack(webpackConf);
+
+// 为使用Koa做服务器配置koa-webpack-dev-middleware
+app.use(webpackDevMiddleware(compiler, webpackConf.devServer));
+
+// 为实现HMR配置webpack-hot-middleware
+let hotMiddleware = require('webpack-hot-middleware')(compiler);
+// Koa对webpack-hot-middleware做适配
+app.use(function*(next) {
+  yield hotMiddleware.bind(null, this.req, this.res);
+  yield next;
+});
+
 // start
 app.listen(pkg.localServer.port, function () {
-  let url = util.format('http://%s:%d', 'localhost', pkg.localServer.port);
+  let url = util.format('http://%s:%d/%s', 'localhost', pkg.localServer.port, 'index.html');
   console.log('Listening at %s', url);
   open(url);
 });

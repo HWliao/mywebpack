@@ -1,0 +1,108 @@
+/* 展开内容 */
+.jjsim-bd {
+  width: 100%;
+  height: 390px;
+  background: #fff;
+  overflow-x: hidden;
+  overflow-y: auto
+}
+
+.jjsim-bd .jjsim-service {
+  padding-left: 18px;
+  border-bottom: 1px solid #E3E3E3;
+}
+
+.jjsim-bd-item {
+  display: block;
+  position: relative;
+  height: 40px;
+  padding: 17px 0 13px 52px;
+  overflow: hidden;
+  cursor: pointer
+}
+
+.jjsim-bd-item .jjsim-item-img {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  left: 0;
+  border-radius: 50%;
+}
+
+.jjsim-bd-item .jjsim-item-img img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.jjsim-bd-item em.num {
+  display: inline-block;
+  height: 14px;
+  line-height: 14px;
+  padding: 0 4px;
+  border-radius: 7px;
+  color: #fff;
+  font-size: 10px;
+  background: #F45448;
+  position: absolute;
+  left: 30px;
+  top: 15px;
+}
+
+.jjsim-bd-item span {
+  display: block;
+  width: 150px;
+  line-height: 20px;
+  white-space: nowrap;
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis
+}
+
+.jjsim-bd-item .name {
+  color: #000;
+  font-size: 14px;
+}
+
+.jjsim-bd-item .text {
+  color: #9b9b9b;
+  font-size: 12px;
+}
+
+.jjsim-bd-item .time {
+  position: absolute;
+  right: 8px;
+  top: 16px;
+  text-align: right;
+  color: #9b9b9b;
+  font-size: 12px;
+  line-height: 17px;
+}
+
+/* 暂无经纪人 */
+.jjsim-noagent {
+  margin-top: 89px;
+  padding-top: 62px;
+  text-align: center;
+  background: url("../images/im/group.png") no-repeat center top #fff;
+}
+
+.jjsim-noagent p {
+  color: #9b9b9b;
+  line-height: 16px;
+  font-size: 12px;
+}
+
+.jjsim-noagent p a {
+  color: #0082ff;
+  text-decoration: underline;
+}
+
+/* 有最近咨询经纪人 */
+.jjsim-bd .jjsim-list {
+  padding-left: 18px;
+}
+
+.jjsim-list .jjsim-bd-item {
+  border-bottom: 1px solid #E3E3E3;
+}
