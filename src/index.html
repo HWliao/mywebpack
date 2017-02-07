@@ -7,8 +7,13 @@
 <body>
 <script type="text/javascript">
   window.onload = function () {
-    if (JJSIM) {
-      var jjsim = new JJSIM();
+    if (jjsim) {
+      jjsim.syncJjsImInstance({}, function (err, im) {
+        if (err)
+          console.log(err);
+        else
+          window.im = im;
+      });
     }
   }
 </script>

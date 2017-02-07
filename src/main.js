@@ -25,9 +25,12 @@ function JJSIM(options) {
 
 function domain(im) {
   // 环境检查
-  var check = require('./js/env/envCheck');
+  var check = require('./js/utils/envCheck');
   if (check()) {
-    require.ensure(['./js/init/index','./js/service/cache'], function () {
+    require.ensure(['./js/init/index', './js/service/cache'], function () {
+      // 初始化数据缓存
+      require('./js/service/cache')(im);
+      // 初始ui
       require('./js/init/index');
     }, 'im_init');
   } else {

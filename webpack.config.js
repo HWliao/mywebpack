@@ -10,12 +10,13 @@ const webpack = require('webpack');
 module.exports = {
   devtool: 'source-map',
   entry: {
-    main: path.resolve(__dirname, './src/main')
+    index: path.resolve(__dirname, './src/index')
   },
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: '[name].js',
-    library: 'JJSIM'
+    filename: '[name]-[chunkhash].js',
+    chunkFilename: '[name]-[chunkhash].js',
+    library: 'jjsim'
   },
   module: {
     loaders: [
