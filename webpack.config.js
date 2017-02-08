@@ -14,8 +14,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: '[name]-[chunkhash].js',
-    chunkFilename: '[name]-[chunkhash].js',
+    filename: '[name]_[chunkhash].js',
+    chunkFilename: '[name]_[chunkhash].js',
     library: 'jjsim'
   },
   module: {
@@ -54,6 +54,7 @@ module.exports = {
     new webpack.ProvidePlugin({
       // 在所有模块中使用logger
       logger: path.resolve(__dirname, './src/js/utils/consoleUtil'),
+      EventEmitter: 'eventemitter3'
 //      $: 'jquery',
 //      jQuery: 'jquery',
 //      'window.jQuery': 'jquery',
@@ -62,6 +63,9 @@ module.exports = {
     new webpack.DefinePlugin({
       PRODUCTION: JSON.stringify(false)
     }),
+//    new webpack.optimize.UglifyJsPlugin({
+//      sourceMap:false
+//    }),
     new webpack.NoErrorsPlugin()
   ],
   // 老版本jq,不知道怎么加入webpack模块系统.这里使用全局引用
