@@ -14,7 +14,7 @@ function JJSIM(options) {
   var _this = this;
   // 非必须语句,表明继承自EventEmitter
   EventEmitter.call(_this);
-
+  
   _this._options = $.extend({}, options);
   // 构造容器
   var container = document.createElement('div');
@@ -52,10 +52,11 @@ function gotoMain() {
   require.ensure('./components/main/main', function () {
     if (!PRODUCTION) logger.debug('[debug] jjsim main js loaded.');
     _this.mainComponent = require('./components/main/main');
+    _this.mainComponent.on('error', errorHandler.bind(_this));
+    // 主体构造完成,销毁init
     _this.mainComponent.create(_this).then(_this.initComponent.destroy.bind(_this.initComponent));
     // toLogin
-    _this.mainComponent.on('click.toLogin', toLogin.bind(_this));
-    // 主体构造完成,销毁
+    _this.mainComponent.on('toLogin', toLogin.bind(_this));
   }, 'jjsim_main');
 }
 
@@ -66,5 +67,13 @@ function toLogin() {
   if (!PRODUCTION) logger.debug('[debug] jjsim emit toLogin event.');
   if (this._options && this._options.toLogin) this._options.toLogin();
   this.emit('toLogin');
+}
+/**
+ * 用以异常处理
+ * @param err
+ */
+function errorHandler(err) {
+  logger.error(err);
+  this.emit('error', err);
 }
 module.exports = JJSIM;

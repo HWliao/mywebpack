@@ -13,6 +13,7 @@ var initComponent = new BasicComponent();
 
 initComponent.create = function (im) {
   var _this = this;
+  if (_this._state) return;
   _this.$body = $(initHtml);
   im.$container.append(_this.$body);
   _this._state = true;

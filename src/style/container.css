@@ -78,25 +78,6 @@ body {
   transition: bottom .2s
 }
 
-.jjsim-wrap {
-  position: relative;
-  float: right;
-  width: 237px;
-  height: 430px;
-  z-index: 2
-}
-
-/* left 聊天面板 */
-.jjsim-window {
-  position: relative;
-  float: right;
-  width: 380px;
-  height: 433px;
-  border-right: 1px solid #d0d0d0;
-  background: #fff;
-  z-index: 1
-}
-
 .jjsim-window {
   display: none;
 }
