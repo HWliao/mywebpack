@@ -1,64 +1,70 @@
 /**
- * web im 主体部分,作为整个组件协调控制
- * Created by lenovo on 2017/2/7.
+ * JJSIM组件
+ * Created by lenovo on 2017/2/10.
  */
 'use strict';
 var $ = require('jquery');
-
 /**
- *
+ * JJSIM构造函数
  * @param options
  * @constructor
  */
 function JJSIM(options) {
-  // 继承envetemit,非必须代码,用来说明继承
-  EventEmitter.call(this);
-
+  if (!PRODUCTION) logger.debug('[debug] jjsim new JJSIM. the options:%o', options);
   var _this = this;
+  // 非必须语句,表明继承自EventEmitter
+  EventEmitter.call(_this);
 
-  // 检查参数
-  if (!PRODUCTION) logger.debug('[debug] JJSIM instance. options:%o', options);
-  // 参数
   _this._options = $.extend({}, options);
-  // 数据缓存
-  _this._cache = {};
-  // ui容器组件
-  _this._ctrl = require('./components/container');
-  // service组件
-  _this._service = require('./service/service');
-
-  // 初始组件被点击,开启im控件
-  _this._ctrl.on('click.init', initService.bind(_this));
-  // 服务初始化完成
-  _this._service.on('done.init', renderRight.bind(_this));
-
-  // 渲染初始UI组件
-  _this._ctrl.init();
+  // 构造容器
+  var container = document.createElement('div');
+  container.id = 'JJSIM' + new Date().getTime();
+  document.body.appendChild(container);
+  _this.$container = $('#' + container.id);
+  if (!PRODUCTION) logger.debug('[debug] jjsim build container. the id:%s', container.id);
+  // 进入初始化状态
+  gotoInit.call(_this);
 }
 JJSIM.prototype = new EventEmitter();
-
-/**
- * 重置im,恢复到初始状态
- * @param options
- */
-JJSIM.prototype.reset = function (options) {
+JJSIM.prototype.reset = function () {
+  var _this = this;
   // todo
 };
-
 /**
- * 初始化服务
+ * 进入初始状态
  */
-function initService() {
+function gotoInit() {
+  if (!PRODUCTION) logger.debug('[debug] jjsim go to init state.');
   var _this = this;
-  _this._service.init(_this._options);
+  _this.initComponent = require('./components/init/init');
+  _this.initComponent.create(_this);
+  // 监听init组件的点击事件
+  // 只有init组件被点击之后,才会进行主体构建
+  _this.initComponent.once('click.init', gotoMain.bind(_this));
+}
+/**
+ * 进入主状态
+ */
+function gotoMain() {
+  // 主体的加载和创建全部都是异步的
+  if (!PRODUCTION) logger.debug('[debug] jjsim go to main state.');
+  var _this = this;
+  require.ensure('./components/main/main', function () {
+    if (!PRODUCTION) logger.debug('[debug] jjsim main js loaded.');
+    _this.mainComponent = require('./components/main/main');
+    _this.mainComponent.create(_this).then(_this.initComponent.destroy.bind(_this.initComponent));
+    // toLogin
+    _this.mainComponent.on('click.toLogin', toLogin.bind(_this));
+    // 主体构造完成,销毁
+  }, 'jjsim_main');
 }
 
 /**
- * 渲染右侧列表
+ * 触发登入
  */
-function renderRight(sessions) {
-  var _this = this;
-  _this._ctrl.openRightList(sessions);
+function toLogin() {
+  if (!PRODUCTION) logger.debug('[debug] jjsim emit toLogin event.');
+  if (this._options && this._options.toLogin) this._options.toLogin();
+  this.emit('toLogin');
 }
-
 module.exports = JJSIM;

@@ -1,0 +1,155 @@
+@charset "utf-8";
+/* CSS reset */
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+img {
+  border: 0;
+}
+
+em {
+  font-style: normal;
+  font-weight: normal;
+}
+
+ol, ul, li {
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+a {
+  color: #303030;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #e60012;
+}
+
+body {
+  font-family: "Microsoft YaHei";
+  font-size: 12px;
+  width: 100%;
+  height: 100%;
+  min-width: 1192px;
+  color: #303030;
+}
+
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+  height: 0;
+  overflow: hidden;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+/* jjsim */
+.jjsim {
+  position: fixed;
+  height: 428px;
+  right: 0;
+  bottom: 0;
+  font-family: "Microsoft Yahei", sans-serif, "Arial";
+  z-index: 1000;
+  transition: bottom .2s
+}
+
+.jjsim-shandow {
+  display: inline-block;
+  box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.45);
+  border: 1px solid #d0d0d0 \9;
+  width: 237px \9;
+}
+
+/* right列表 */
+.jjsim.im-fold {
+  bottom: -390px;
+  transition: bottom .2s
+}
+
+.jjsim-wrap {
+  position: relative;
+  float: right;
+  width: 237px;
+  height: 430px;
+  z-index: 2
+}
+
+/* left 聊天面板 */
+.jjsim-window {
+  position: relative;
+  float: right;
+  width: 380px;
+  height: 433px;
+  border-right: 1px solid #d0d0d0;
+  background: #fff;
+  z-index: 1
+}
+
+.jjsim-window {
+  display: none;
+}
+
+.jjsim-list {
+  display: none;
+}
+
+.jjsim-hd {
+  width: 202px;
+  height: 40px;
+  padding-left: 34px;
+  line-height: 40px;
+  border-bottom: 1px solid #ddd;
+  background: url("../images/im/im-icon.png") no-repeat 13px 13px #fff;
+  cursor: pointer;
+  position: relative;
+}
+
+.jjsim-hd.red {
+  background: url("../images/im/im-icon-red.png") no-repeat 13px 13px #fff;
+}
+
+.jjsim-hd span.im-title {
+  font-size: 14px;
+  color: #4A4A4A;
+  padding-left: 34px;
+}
+
+.jjsim-hd-num {
+  display: inline-block;
+  height: 14px;
+  line-height: 14px;
+  padding: 0 4px;
+  border-radius: 7px;
+  color: #fff;
+  font-size: 10px;
+  background: #F45448;
+}
+
+.jjsim-hd-closebtn {
+  position: absolute;
+  display: inline-block;
+  right: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  text-indent: 999em;
+  overflow: hidden;
+  background: url(../images/im/arrow_down.png) no-repeat center center;
+  cursor: pointer
+}
+
+.im-fold .jjsim-hd-closebtn {
+  background: url("../images/im/arrow_up.png") no-repeat center center;
+}

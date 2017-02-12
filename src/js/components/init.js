@@ -23,6 +23,7 @@ initUI.destroyUI = function () {
     this.$init.remove();
     this.$init = undefined;
     this.state = false;
+    this.removeAllListeners();
   }
 };
 // 创建初始组件
@@ -32,7 +33,8 @@ initUI.create = function () {
   // 初始组件点击行为触发后续动作
   this.$init.one('click.init', function (e) {
     if (!PRODUCTION) logger.debug('[debug] JJSIM initUI emit click.init');
-    initUI.$init.find('img').show();
+    // show loading img
+    initUI.$init.eq(0).show();
     initUI.emit('click.init');
   });
   // 设置有效状态

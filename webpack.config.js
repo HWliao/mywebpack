@@ -10,12 +10,13 @@ const webpack = require('webpack');
 module.exports = {
   devtool: 'source-map',
   entry: {
-    index: path.resolve(__dirname, './src/index')
+    jjsim: path.resolve(__dirname, './src/index')
   },
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: '[name]_[chunkhash].js',
     chunkFilename: '[name]_[chunkhash].js',
+    libraryTarget: 'umd',
     library: 'jjsim'
   },
   module: {
@@ -24,7 +25,7 @@ module.exports = {
         // html --> dom
         test: /\.html$/,
         include: path.resolve(__dirname, './src'),
-        loader: 'dom!html'
+        loader: 'html'
       },
       {
         // 小于8k图片转化为dataurl
@@ -71,6 +72,6 @@ module.exports = {
   // 老版本jq,不知道怎么加入webpack模块系统.这里使用全局引用
   // 结合script-loader进行动态加载
   externals: {
-    'jquery': 'window.jQuery'
+    'jquery': 'var window.jQuery'
   }
 };
